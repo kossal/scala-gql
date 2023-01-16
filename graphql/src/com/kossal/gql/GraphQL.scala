@@ -40,17 +40,17 @@ object GraphQL {
       }
 
   case class Queries(
-                      getCharacters: UIO[Seq[Character]],
-                      getCharacter: String => UIO[Option[Character]]
-                    )
+    getCharacters: UIO[Seq[Character]],
+    getCharacter: String => UIO[Option[Character]]
+  )
 
   case class Mutations(
-                        changeAge: Character => UIO[Option[Character]]
-                      )
+    changeAge: Character => UIO[Option[Character]]
+  )
 
   case class Subscriptions(
-                            getCharacters: ZStream[Any, Nothing, Character]
-                          )
+    getCharacters: ZStream[Any, Nothing, Character]
+  )
 
   private val queries: Queries = Queries(getCharacters, getCharacter)
   private val mutations: Mutations = Mutations(args => changeAge(args.name, args.age))
